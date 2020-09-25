@@ -2,8 +2,9 @@ import { connect } from 'react-redux';
 import ContactList from '../components/ContactList/ContactList';
 
 const mapStateToProps = (state) => {
+  console.log('state ', state);
   return {
-    contactList: state.contactList,
+    contactList: state.phonebook.contactList,
   };
 };
 

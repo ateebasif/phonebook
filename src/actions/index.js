@@ -1,15 +1,16 @@
 export const ADD_CONTACT = 'ADD_CONTACT';
 
-export function addContact(name, address, bio, phoneNumber, profilePicture) {
+export function addContact(contact) {
   return {
     type: ADD_CONTACT,
     contactItem: {
       _id: new Date().getTime(),
-      name,
-      address,
-      bio,
-      phoneNumber,
-      profilePicture,
+      //   name,
+      //   address,
+      //   bio,
+      //   phoneNumber,
+      //   profilePicture,
+      ...contact,
     },
   };
 }

@@ -8,11 +8,13 @@ import { loadContactList } from './actions';
 import createSagaMiddleware from 'redux-saga';
 import rootSaga from './sagas';
 import { BrowserRouter as Router } from 'react-router-dom';
+import SubmitValidationForm from './components/Form/AddContactForm';
+import store from './store';
 
-const sagaMiddleware = createSagaMiddleware();
-const store = createStore(phonebookApp, applyMiddleware(sagaMiddleware));
+// const sagaMiddleware = createSagaMiddleware();
+// const store = createStore(phonebookApp, applyMiddleware(sagaMiddleware));
 
-sagaMiddleware.run(rootSaga);
+// sagaMiddleware.run(rootSaga);
 
 store.dispatch(loadContactList());
 

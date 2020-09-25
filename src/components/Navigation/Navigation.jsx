@@ -6,8 +6,8 @@ export default () => (
     <Link className="btn btn-primary" to="/">
       Conatact List
     </Link>
-    <Link className="btn btn-secondary" to="/new-contact">
-      + Add New Contact
+    <Link className="btn btn-secondary" to="/add-contact">
+      + Add New Contact Form
     </Link>
   </div>
 );
