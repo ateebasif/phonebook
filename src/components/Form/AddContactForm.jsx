@@ -1,6 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Field, reduxForm } from 'redux-form';
+import ImageUploader from 'react-images-upload';
 // import submit from './Submit';
+
+// const {file, setFile} = useState();
 
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
@@ -9,23 +12,20 @@ const numValidateExp = /^[3][0][1]\s\d{3}\s\d{4}$/;
 
 const validate = (values) => {
   const errors = {};
+  const nameValidateExp = /^[a-zA-Z ]{4}\w*$/; // [a-zA-Z ]{4}\w*$ it can accept digits also
+  const numValidateExp = /^[3][0][1]\s\d{3}\s\d{4}$/;
   //   Name Validation
   if (!values.name) {
     errors.username = 'Required';
   } else if (!nameValidateExp.test(values.name)) {
     errors.name =
       'Must be more than 3 characters and cannot contain any special character';
-  } else {
-    errors.name = 'Name is correct';
   }
   // Phone Number Validation
   if (!values.phoneNumber) {
     errors.phoneNumber = 'Required';
   } else if (numValidateExp.test(values.phoneNumber)) {
-    errors.phoneNumber = 'Phone is correct';
-  } else {
-    errors.phoneNumber =
-      'Phone is incorrect!, Format (301) *** ****, Must Start with 3 and then have 7 digits, it cannot contain alphabets special characters!';
+    // errors.phoneNumber = 'Phone is correct';
   }
   //    Address Validation
   if (!values.address) {
@@ -33,19 +33,13 @@ const validate = (values) => {
   }
   //   else if (values.name.length <= 3 || values.name !== /^[a-z]/) {
   else if (values.address.length > 3 && values.address.length < 200) {
-    errors.address = 'valid Address';
-  } else {
-    errors.address =
-      'Address must be greater than 3 characters and less than 200';
+    // errors.address = 'valid Address';
   }
   //   Bio Validation
   if (!values.bio) {
     errors.bio = 'Required';
   } else if (values.bio.length > 10 && values.bio.length < 1000) {
-    errors.bio = 'Valid';
-  } else {
-    errors.bio =
-      'Bio Must be more than 10 characters and less than 1000 character';
+    // errors.bio = 'Valid';
   }
 
   if (!values.email) {
@@ -97,12 +91,25 @@ const SubmitValidationForm = (props) => {
     addContact,
   } = props;
 
+  const [image, setImage] = useState('');
+
   const submit = (values) => {
     return sleep(1000).then(() => {
       console.log(values);
-      addContact(values);
+      addContact({ ...values, profilePicture: image });
     });
   };
+
+  const onDrop = (files) => {
+    var file = files[0];
+    var reader = new FileReader();
+    var url = reader.readAsDataURL(file);
+
+    reader.onloadend = function (e) {
+      setImage(reader.result);
+    };
+  };
+
   return (
     <form onSubmit={handleSubmit(submit)}>
       <Field
@@ -133,12 +140,17 @@ const SubmitValidationForm = (props) => {
         label="PhoneNumber"
         placeholder="Format (301) *** ****"
       />
-      <Field
-        name="profilePicture"
-        type="file"
-        component={renderField}
-        label="ProfilePicture"
+
+      <img src={image} height="200" width="200" alt="" />
+      <ImageUploader
+        withIcon={true}
+        buttonText="Choose Profile Picture"
+        onChange={onDrop}
+        imgExtension={['.jpg', '.png']}
+        label="Max image size 200kb. Accepted: jpg, png"
+        maxFileSize={200000}
       />
+
       {error && <strong>{error}</strong>}
       <div>
         <button type="submit" disabled={submitting}>
