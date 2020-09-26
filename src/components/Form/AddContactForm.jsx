@@ -1,14 +1,8 @@
 import React, { useState } from 'react';
 import { Field, reduxForm } from 'redux-form';
 import ImageUploader from 'react-images-upload';
-// import submit from './Submit';
-
-// const {file, setFile} = useState();
 
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
-
-const nameValidateExp = /^[a-zA-Z ]{4}\w*$/; // [a-zA-Z ]{4}\w*$ it can accept digits also
-const numValidateExp = /^[3][0][1]\s\d{3}\s\d{4}$/;
 
 const validate = (values) => {
   const errors = {};
@@ -24,45 +18,25 @@ const validate = (values) => {
   // Phone Number Validation
   if (!values.phoneNumber) {
     errors.phoneNumber = 'Required';
-  } else if (numValidateExp.test(values.phoneNumber)) {
-    // errors.phoneNumber = 'Phone is correct';
+  } else if (!numValidateExp.test(values.phoneNumber)) {
+    errors.phoneNumber = 'Phone number should be in the format (301) 000 0000';
   }
   //    Address Validation
   if (!values.address) {
     errors.address = 'Required';
-  }
-  //   else if (values.name.length <= 3 || values.name !== /^[a-z]/) {
-  else if (values.address.length > 3 && values.address.length < 200) {
-    // errors.address = 'valid Address';
+  } else if (!(values.address.length > 3 && values.address.length < 200)) {
+    errors.address =
+      'Address should be more than 3 characters but less than 200 char';
   }
   //   Bio Validation
   if (!values.bio) {
     errors.bio = 'Required';
-  } else if (values.bio.length > 10 && values.bio.length < 1000) {
-    // errors.bio = 'Valid';
+  } else if (!(values.bio.length > 10 && values.bio.length < 1000)) {
+    errors.bio =
+      'Bio should be more than 10 characters but less than 1000 char';
   }
 
-  if (!values.email) {
-    errors.email = 'Required';
-  } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
-    errors.email = 'Invalid email address';
-  }
-  if (!values.age) {
-    errors.age = 'Required';
-  } else if (isNaN(Number(values.age))) {
-    errors.age = 'Must be a number';
-  } else if (Number(values.age) < 18) {
-    errors.age = 'Sorry, you must be at least 18 years old';
-  }
   return errors;
-};
-
-const warn = (values) => {
-  const warnings = {};
-  if (values.age < 19) {
-    warnings.age = 'Hmm, you seem a bit young...';
-  }
-  return warnings;
 };
 
 const renderField = ({
@@ -167,5 +141,4 @@ const SubmitValidationForm = (props) => {
 export default reduxForm({
   form: 'submitValidation', // a unique identifier for this form
   validate, // <--- validation function given to redux-form
-  warn,
 })(SubmitValidationForm);

@@ -1,8 +1,9 @@
-import { ADD_CONTACT } from '../actions';
+import { ADD_CONTACT, SELECT_CONTACT } from '../actions';
 import { RENDER_CONTACT_LIST } from '../actions';
 
 const initialState = {
   contactList: [],
+  selectedContactId: null,
 };
 
 export default function phonebookApp(state = initialState, action) {
@@ -22,6 +23,11 @@ export default function phonebookApp(state = initialState, action) {
       return {
         ...state,
         contactList: action.contactList,
+      };
+    case SELECT_CONTACT:
+      return {
+        ...state,
+        selectedContactId: action.contactId,
       };
     default:
       return state;

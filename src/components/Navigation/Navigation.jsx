@@ -4,10 +4,10 @@ import { Link } from 'react-router-dom';
 export default () => (
   <div>
     <Link className="btn btn-primary" to="/">
-      Conatact List
+      Contact List
     </Link>
     <Link className="btn btn-secondary" to="/add-contact">
-      + Add New Contact Form
+      + Add New Contact
     </Link>
   </div>
 );

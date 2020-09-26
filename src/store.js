@@ -10,9 +10,6 @@ const reducer = combineReducers({
   form: reduxFormReducer, // mounted under "form"
   phonebook: phonebookApp,
 });
-// const store = (window.devToolsExtension
-//   ? window.devToolsExtension()(createStore)
-//   : createStore)(reducer, applyMiddleware(sagaMiddleware));
 
 const store = createStore(reducer, applyMiddleware(sagaMiddleware));
 

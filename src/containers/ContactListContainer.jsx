@@ -1,13 +1,24 @@
 import { connect } from 'react-redux';
 import ContactList from '../components/ContactList/ContactList';
+import { selectContact } from '../actions/index';
 
 const mapStateToProps = (state) => {
-  console.log('state ', state);
   return {
     contactList: state.phonebook.contactList,
   };
 };
 
-const ContactListContainer = connect(mapStateToProps)(ContactList);
+const mapDispatchToProps = (dispatch) => {
+  return {
+    selectContact: (id) => {
+      dispatch(selectContact(id));
+    },
+  };
+};
+
+const ContactListContainer = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(ContactList);
 
 export default ContactListContainer;
