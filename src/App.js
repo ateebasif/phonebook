@@ -2,11 +2,11 @@ import React, { Component } from 'react';
 import Container from 'react-bootstrap/Container';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
-import { Route } from 'react-router-dom';
+import { Route, Link } from 'react-router-dom';
 
-import Navigation from './components/Navigation/Navigation';
 import AddContactContainer from './containers/AddContactForm';
 import Home from './pages/Home';
+import './App.css';
 
 class App extends Component {
   render() {
@@ -14,8 +14,9 @@ class App extends Component {
       <Container>
         <Row className="row">
           <Col xs={12}>
-            <h1>Phonebook App</h1>
-            <Navigation />
+            <Link className="" to="/">
+              <h1>Phonebook App</h1>
+            </Link>
             <Route exact path="/" component={Home} />
             <Route exact path="/add-contact" component={AddContactContainer} />
           </Col>

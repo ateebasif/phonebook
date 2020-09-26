@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Field, reduxForm } from 'redux-form';
 import ImageUploader from 'react-images-upload';
+import { Form } from 'react-bootstrap';
 
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
@@ -41,18 +42,25 @@ const validate = (values) => {
 
 const renderField = ({
   input,
+  name,
   label,
   placeholder,
   type,
   meta: { touched, error },
 }) => (
-  <div>
-    <label>{label}</label>
-    <div>
-      <input {...input} placeholder={placeholder} type={type} />
-      {touched && error && <span>{error}</span>}
-    </div>
-  </div>
+  // <div>
+  //   <label>{label}</label>
+  //   <div>
+  //     <input {...input} placeholder={placeholder} type={type} />
+  //     {touched && error && <span>{error}</span>}
+  //   </div>
+  // </div>
+
+  <Form.Group controlId={name}>
+    <Form.Label>{label}</Form.Label>
+    <Form.Control {...input} type={type} placeholder={placeholder} />
+    {touched && error && <Form.Text className="text-muted">{error}</Form.Text>}
+  </Form.Group>
 );
 
 const SubmitValidationForm = (props) => {
@@ -92,6 +100,7 @@ const SubmitValidationForm = (props) => {
         component={renderField}
         placeholder="Name"
         label="Name"
+        className="test"
       />
       <Field
         name="address"

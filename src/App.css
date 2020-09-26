@@ -36,3 +36,92 @@
     transform: rotate(360deg);
   }
 }
+
+.side-list,
+.contact-details-container {
+  border: 1px solid #007bff;
+}
+
+.side-list {
+  height: 100%;
+  overflow-y: auto;
+}
+
+.contact-details-container {
+  padding: 0 10px 30px;
+}
+
+.contact-list .list-group-item {
+  background-color: #007bff;
+  border-radius: 0;
+  color: #fff;
+  cursor: pointer;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.jumbotron {
+  background-color: #fff;
+}
+
+.phone-book-title {
+  padding: 3rem 2rem;
+  margin-bottom: 0;
+}
+
+.contact-details-heading {
+  align-content: center;
+}
+
+.contact-details-heading h2 {
+  max-width: 500px;
+  display: inline-block;
+  border: 1px solid black;
+  min-height: 80px;
+  width: 60%;
+  padding-top: 20px;
+}
+
+.contact-details {
+  background-color: #007bff;
+  border-radius: 40px;
+  min-height: 500px;
+  padding: 20px;
+  margin-bottom: 12px;
+}
+.main-app-container {
+  height: 100%;
+}
+
+.square-button {
+  border-radius: 0;
+}
+
+.orange {
+  background-color: orange;
+}
+
+.contact-basic-info label {
+  display: block;
+  margin-bottom: 20px;
+  font-size: 24px;
+  color: #fff;
+}
+
+.contact-bio {
+  border: 2px solid black;
+  background-color: #fff;
+  height: 100%;
+  min-height: 300px;
+  padding: 5px 10px;
+}
+
+.text-white {
+  color: #fff;
+}
