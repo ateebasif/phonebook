@@ -1,7 +1,59 @@
-.ff {
+.right-col {
+  justify-content: center;
+}
+
+.img-thumbnail {
+  padding: 0.25rem;
+  background-color: #fff;
+  border: 1px solid #dee2e6;
+  border-radius: 0.25rem;
+  max-width: 100%;
+  height: auto;
+}
+
+.text-center {
+  text-align: center;
+}
+
+/* .img-uploader {
+} */
+
+.submit-clear {
+  margin-top: 50px !important;
+}
+
+.add-contact-heading {
+  border: 1px solid black;
+  max-width: 500px;
+  display: inline-block;
+  min-height: 80px;
+  width: 60%;
+  padding-top: 20px;
+  margin-left: 25%;
+  margin-bottom: 40px;
+  margin-top: 20px;
+}
+
+.form-container {
+  box-sizing: border-box;
+  height: 100%;
+  border: 1px solid#2a91ff;
+}
+
+.valid-message {
+  color: green;
+}
+
+.invalid-message {
   color: red;
 }
 
-.input[type='text'] {
-  color: blue;
+.input-fields-error {
+  border: 2px solid red;
+  border-radius: 4px;
+}
+
+.input-fields-good {
+  border: 2px solid green;
+  border-radius: 4px;
 }

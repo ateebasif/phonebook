@@ -29,12 +29,15 @@ const ContactInfo = ({ contact }) => (
 
 const ContactDetails = ({ contact }) => {
   return (
-    <div className="contact-details-container">
+    <div className="contact-details-container" data-test="contact_details">
       <Jumbotron className="contact-details-heading text-center">
         <h2 className="text-center">Contact Details </h2>
       </Jumbotron>
 
-      <Container className="contact-details">
+      <Container
+        className="contact-details"
+        // data-test="contact_details_component"
+      >
         {!contact ? (
           <h3 className="text-white">Not contact is selected</h3>
         ) : (

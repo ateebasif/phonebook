@@ -7,7 +7,7 @@ import Row from 'react-bootstrap/Row';
 
 function Home() {
   return (
-    <div className="main-app-container">
+    <div className="main-app-container" data-test="Home_phonebook">
       <Row className="no-gutters">
         <Col md={3}>
           <div className="side-list">

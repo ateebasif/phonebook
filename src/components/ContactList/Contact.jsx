@@ -7,7 +7,11 @@ const Contact = ({ contact, selectContact }) => {
   const onClick = () => {
     selectContact(contact._id);
   };
-  return <ListGroup.Item onClick={onClick}>{contact.name}</ListGroup.Item>;
+  return (
+    <ListGroup.Item id="contact-item" onClick={onClick}>
+      {contact.name}
+    </ListGroup.Item>
+  );
 };
 
 Contact.propTypes = {

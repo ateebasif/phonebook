@@ -1,5 +1,27 @@
 export const ADD_CONTACT = 'ADD_CONTACT';
 export const SELECT_CONTACT = 'SELECT_CONTACT';
+export const REQUEST_SUBMIT = 'REQUEST_SUBMIT';
+
+export const SAVE_CONTACT = 'SAVE_CONTACT';
+
+export const saveContactt = (contact) => ({
+  type: SAVE_CONTACT,
+  // payload: contact,
+  payload: {
+    _id: new Date().getTime(),
+    ...contact,
+  },
+});
+
+export function requestSubmit(contact) {
+  return {
+    type: REQUEST_SUBMIT,
+    contactItem: {
+      _id: new Date().getTime(),
+      ...contact,
+    },
+  };
+}
 
 export function addContact(contact) {
   return {

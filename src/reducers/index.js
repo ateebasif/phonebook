@@ -1,5 +1,7 @@
-import { ADD_CONTACT, SELECT_CONTACT } from '../actions';
+import { ADD_CONTACT, SELECT_CONTACT, REQUEST_SUBMIT } from '../actions';
 import { RENDER_CONTACT_LIST } from '../actions';
+import dispatch from 'redux';
+import axios from 'axios';
 
 const initialState = {
   contactList: [],
@@ -19,6 +21,7 @@ export default function phonebookApp(state = initialState, action) {
         ...state,
         contactList: newContactList,
       };
+
     case RENDER_CONTACT_LIST:
       return {
         ...state,
@@ -33,3 +36,19 @@ export default function phonebookApp(state = initialState, action) {
       return state;
   }
 }
+
+export const saveContact = () => async (dispatch, getState) => {
+  const contacts = { ...getState().contactList };
+  let response = await fetch('http://localhost:8000/contact', {
+    method: 'POST',
+    headers: {
+      'Content-type': 'application/json',
+    },
+    body: JSON.stringify(contacts),
+  });
+
+  alert('Success', response);
+  console.log('dispatch', contacts);
+  console.log('getstate', getState);
+  console.log('response', response);
+};

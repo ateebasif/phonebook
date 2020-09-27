@@ -12,10 +12,10 @@ class App extends Component {
   render() {
     return (
       <Container>
-        <Row className="row">
+        <Row className="row" data-test="row">
           <Col xs={12}>
             <Link className="" to="/">
-              <h1>Phonebook App</h1>
+              <h1 id="header">Phonebook App</h1>
             </Link>
             <Route exact path="/" component={Home} />
             <Route exact path="/add-contact" component={AddContactContainer} />
