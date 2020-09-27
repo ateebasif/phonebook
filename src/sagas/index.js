@@ -16,10 +16,11 @@ export function* fetchContactList() {
 }
 
 export function* saveContactToServer(action) {
+  const saveParams = { ...action.contactItem, profilePicture: '' };
   try {
     yield put(saveContactRequested());
-    const contact = yield call(saveContact, action.contactItem);
-    yield put(addContact(contact));
+    const contact = yield call(saveContact, saveParams);
+    yield put(addContact(action.contactItem));
     yield put(saveContactSucceeded());
   } catch (e) {
     yield put(saveContactFailed(e.message));
