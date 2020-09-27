@@ -1,16 +1,25 @@
 import { connect } from 'react-redux';
 import AddContactForm from '../components/Form/AddContactForm';
-import { addContact, requestSubmit } from '../actions';
-// import { addContact } from '../sagas/index';
+import { saveContact } from '../actions';
 
 const mapDispatchToProps = (dispatch) => {
   return {
     addContact: (values) => {
-      dispatch(addContact(values));
+      dispatch(saveContact(values));
     },
   };
 };
 
-const AddContactContainer = connect(null, mapDispatchToProps)(AddContactForm);
+const mapStateToProps = (state) => {
+  return {
+    saveContactInProgress: state.phonebook.saveContactInProgress,
+    saveContactError: state.phonebook.saveContactError,
+  };
+};
+
+const AddContactContainer = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(AddContactForm);
 
 export default AddContactContainer;

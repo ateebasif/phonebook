@@ -1,13 +1,10 @@
 import React, { useState } from 'react';
-import { Field, reduxForm, isValid } from 'redux-form';
+import { Field, reduxForm } from 'redux-form';
 import ImageUploader from 'react-images-upload';
 import { Form } from 'react-bootstrap';
-import { Jumbotron, Container, Row, Col, Image } from 'react-bootstrap';
+import { Container, Row, Col, Spinner } from 'react-bootstrap';
+import PropTypes from 'prop-types';
 import './Form.css';
-import { useDispatch } from 'react-redux';
-import { saveContact } from '../../reducers/index';
-import { saveContactt } from '../../actions/index';
-// import { response } from 'express';
 
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
@@ -86,7 +83,7 @@ const renderField = ({
       className={inputFieldClass}
     />
     {touched && !error && (
-      <Form.Control.Feedback className="valid-message" type>
+      <Form.Control.Feedback className="valid-message" type={''}>
         Looks good!
       </Form.Control.Feedback>
     )}
@@ -96,7 +93,7 @@ const renderField = ({
   </Form.Group>
 );
 
-const SubmitValidationForm = (props) => {
+const AddContactForm = (props) => {
   const {
     error,
     handleSubmit,
@@ -104,16 +101,14 @@ const SubmitValidationForm = (props) => {
     reset,
     submitting,
     addContact,
+    saveContactInProgress,
+    saveContactError,
   } = props;
 
   const [image, setImage] = useState('');
 
   const submit = (values) => {
-    return sleep(1000).then(() => {
-      console.log('contact form submitted values', values);
-      addContact({ ...values, profilePicture: image });
-      // requestSubmit({ ...values, profilePicture: image });
-    });
+    return addContact({ ...values, profilePicture: image });
   };
 
   const onDrop = (files) => {
@@ -124,13 +119,6 @@ const SubmitValidationForm = (props) => {
     reader.onloadend = function (e) {
       setImage(reader.result);
     };
-  };
-
-  const dispatch = useDispatch();
-
-  const onSave = (values) => {
-    console.log('onsave');
-    dispatch(saveContact());
   };
 
   return (
@@ -198,7 +186,7 @@ const SubmitValidationForm = (props) => {
                 className="btn btn-secondary orange square-button "
                 type="submit"
                 disabled={submitting}
-                onClick={onSave}
+                onClick={submit}
               >
                 Add Contact
               </button>
@@ -210,6 +198,9 @@ const SubmitValidationForm = (props) => {
               >
                 Clear Values
               </button>
+              <br />
+              <br />
+              {saveContactInProgress && <Spinner animation="border" />}
             </div>
           </Col>
         </Row>
@@ -218,7 +209,13 @@ const SubmitValidationForm = (props) => {
   );
 };
 
+AddContactForm.propTypes = {
+  saveContactInProgress: PropTypes.bool,
+  saveContactError: PropTypes.string,
+  addContact: PropTypes.func,
+};
+
 export default reduxForm({
   form: 'submitValidation', // a unique identifier for this form
   validate, // <--- validation function given to redux-form
-})(SubmitValidationForm);
+})(AddContactForm);

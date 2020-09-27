@@ -31,8 +31,6 @@ app.get('/contact', (req, res) => {
 app.post('/contact', (req, res) => {
   const newContact = { _id: new Date().getTime(), ...req.body };
   contactList = [...contactList, { ...newContact }];
-  console.log('REQ', req);
-  console.log('Req Body', req.body);
   setTimeout(() => {
     res.send(newContact);
   }, 2000);

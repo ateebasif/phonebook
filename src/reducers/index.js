@@ -1,4 +1,10 @@
-import { ADD_CONTACT, SELECT_CONTACT, REQUEST_SUBMIT } from '../actions';
+import {
+  ADD_CONTACT,
+  SELECT_CONTACT,
+  SAVE_CONTACT_REQUESTED,
+  SAVE_CONTACT_SUCCEEDED,
+  SAVE_CONTACT_FAILED,
+} from '../actions';
 import { RENDER_CONTACT_LIST } from '../actions';
 import dispatch from 'redux';
 import axios from 'axios';
@@ -31,6 +37,23 @@ export default function phonebookApp(state = initialState, action) {
       return {
         ...state,
         selectedContactId: action.contactId,
+      };
+    case SAVE_CONTACT_REQUESTED:
+      return {
+        ...state,
+        saveContactInProgress: true,
+      };
+    case SAVE_CONTACT_SUCCEEDED:
+      console.log('Here');
+      return {
+        ...state,
+        saveContactInProgress: false,
+      };
+    case SAVE_CONTACT_FAILED:
+      return {
+        ...state,
+        saveContactInProgress: false,
+        saveContactError: action.error,
       };
     default:
       return state;

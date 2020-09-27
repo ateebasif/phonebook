@@ -3,15 +3,9 @@ export const SELECT_CONTACT = 'SELECT_CONTACT';
 export const REQUEST_SUBMIT = 'REQUEST_SUBMIT';
 
 export const SAVE_CONTACT = 'SAVE_CONTACT';
-
-export const saveContactt = (contact) => ({
-  type: SAVE_CONTACT,
-  // payload: contact,
-  payload: {
-    _id: new Date().getTime(),
-    ...contact,
-  },
-});
+export const SAVE_CONTACT_REQUESTED = 'SAVE_CONTACT_REQUESTED';
+export const SAVE_CONTACT_FAILED = 'SAVE_CONTACT_FAILED';
+export const SAVE_CONTACT_SUCCEEDED = 'SAVE_CONTACT_SUCCEEDED';
 
 export function requestSubmit(contact) {
   return {
@@ -33,10 +27,47 @@ export function addContact(contact) {
   };
 }
 
+export function saveContact(contact) {
+  return {
+    type: SAVE_CONTACT,
+    contactItem: {
+      _id: new Date().getTime(),
+      ...contact,
+    },
+  };
+}
+
+// Action for Server Error
+export function saveContactFailed(error) {
+  return {
+    type: SAVE_CONTACT_FAILED,
+    error: error,
+  };
+}
+
+export function saveContactSucceeded() {
+  return {
+    type: SAVE_CONTACT_SUCCEEDED,
+  };
+}
+
+export function saveContactRequested() {
+  return {
+    type: SAVE_CONTACT_REQUESTED,
+  };
+}
+
 export function selectContact(id) {
   return {
     type: SELECT_CONTACT,
     contactId: id,
+  };
+}
+
+export function renderContactList(contactList) {
+  return {
+    type: RENDER_CONTACT_LIST,
+    contactList: contactList,
   };
 }
 
