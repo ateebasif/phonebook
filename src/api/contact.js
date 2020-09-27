@@ -1,5 +1,7 @@
 import makeRequest from './makeRequest';
-const SERVER_URL = 'http://localhost:8000';
+const SERVER_URL =
+  process.env.NODE_ENV === 'production' ? '' : 'http://localhost:8000';
+
 export const saveContact = (data) => {
   const url = `${SERVER_URL}/contact`;
   return makeRequest(

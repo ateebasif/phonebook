@@ -4,10 +4,14 @@ const port = 8000;
 const cors = require('cors');
 
 // TODO: FIXME: Enable Cors only for dev
-app.use(cors());
+if (process.env.NODE_ENV !== 'production') {
+  console.log('here');
+  app.use(cors());
+}
 // middleware
 app.use(express.json());
 app.use(express.urlencoded());
+app.use(express.static('build'));
 
 let contactList = [
   {
@@ -16,7 +20,7 @@ let contactList = [
     address: '165',
     bio: 'something',
     phoneNumber: '12345',
-    profilePicture: 'hehwijh',
+    profilePicture: '',
   },
 ];
 

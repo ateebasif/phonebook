@@ -28,10 +28,11 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "build:prod": "set NODE_ENV=production && react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "backend": "nodemon server.js",
-    "backend:prod": "node server.js"
+    "backend:prod": "set NODE_ENV=production && node server.js"
   },
   "eslintConfig": {
     "extends": "react-app"
