@@ -6,12 +6,10 @@ import { Container, Row, Col, Spinner } from 'react-bootstrap';
 import PropTypes from 'prop-types';
 import './Form.css';
 
-const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
-
 let inputFieldClass = '';
 const validate = (values) => {
   const errors = {};
-  const nameValidateExp = /^[a-zA-Z ]{4}\w*$/; // [a-zA-Z ]{4}\w*$ it can accept digits also
+  const nameValidateExp = /^[a-zA-Z ]{4}\w*$/;
   const numValidateExp = /^[3][0][1]\s\d{3}\s\d{4}$/;
   inputFieldClass = '';
   //   Name Validation
@@ -65,14 +63,6 @@ const renderField = ({
   type,
   meta: { touched, error },
 }) => (
-  // <div>
-  //   <label>{label}</label>
-  //   <div>
-  //     <input {...input} placeholder={placeholder} type={type} />
-  //     {touched && error && <span>{error}</span>}
-  //   </div>
-  // </div>
-
   <Form.Group controlId={name}>
     <Form.Label>{label}</Form.Label>
     <Form.Control

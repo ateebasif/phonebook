@@ -7,16 +7,6 @@ export const SAVE_CONTACT_REQUESTED = 'SAVE_CONTACT_REQUESTED';
 export const SAVE_CONTACT_FAILED = 'SAVE_CONTACT_FAILED';
 export const SAVE_CONTACT_SUCCEEDED = 'SAVE_CONTACT_SUCCEEDED';
 
-export function requestSubmit(contact) {
-  return {
-    type: REQUEST_SUBMIT,
-    contactItem: {
-      _id: new Date().getTime(),
-      ...contact,
-    },
-  };
-}
-
 export function addContact(contact) {
   return {
     type: ADD_CONTACT,

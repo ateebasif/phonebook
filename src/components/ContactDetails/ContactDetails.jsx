@@ -34,10 +34,7 @@ const ContactDetails = ({ contact }) => {
         <h2 className="text-center">Contact Details </h2>
       </Jumbotron>
 
-      <Container
-        className="contact-details"
-        // data-test="contact_details_component"
-      >
+      <Container className="contact-details">
         {!contact ? (
           <h3 className="text-white">Not contact is selected</h3>
         ) : (
